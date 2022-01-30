@@ -1,4 +1,8 @@
 class ReadyPlayerOne{
+  
+  //background image
+  PImage backgroundImage;
+  
   //vars
   int x;
   int y;
@@ -23,12 +27,15 @@ class ReadyPlayerOne{
   y = yPos;
   size = pSize;
   c = pColor;
-  gas = 5;
+  gas = 10;
   
-  topBound = x  - 120;
-  bottomBound = x + size - 120;
-  leftBound = y + 120;
-  rightBound = y + size + 120;
+  //load it in
+    backgroundImage = loadImage("ActualBackground.png");
+  
+  topBound = x;
+  bottomBound = x + size;
+  leftBound = y;
+  rightBound = y + size;
   
   movingLeft = false;
   movingRight = false;
@@ -38,6 +45,9 @@ class ReadyPlayerOne{
  
  //create player
  void render(){
+   //create the background image
+   image(backgroundImage, (-1000 - leftBound), -600 - topBound, 3600, 3600);
+  
    fill(c);
    square(x,y,size);
    
@@ -50,8 +60,8 @@ class ReadyPlayerOne{
  //moves player in direction stated by the boolean
   void playerZoomRight(){
     if(movingRight == true){
-      if(x+size < width){
-      x = x + gas;
+      if(rightBound < 2190){
+      //x = x + gas;
       
       topBound += 0;
       bottomBound += 0;
@@ -68,8 +78,8 @@ class ReadyPlayerOne{
   }
   void playerZoomLeft(){
     if(movingLeft == true){
-      if(x > 0){
-      x = x - gas;
+      if(leftBound > -1370){
+      //x = x - gas;
       
       topBound += 0;
       bottomBound += 0;
@@ -86,8 +96,8 @@ class ReadyPlayerOne{
   }
   void playerZoomUp(){
     if(movingUp == true){
-      if(y > 0){
-      y = y - gas;
+      if(topBound > -860){
+      //y = y - gas;
       topBound -= gas;
       bottomBound -= gas;
       println("topbound " +topBound);
@@ -103,8 +113,8 @@ class ReadyPlayerOne{
   }
    void playerZoomDown(){
       if(movingDown == true){
-        if(y+size < height){
-        y = y + gas;
+        if(bottomBound < 2700){
+        //y = y + gas;
         topBound += gas;
         bottomBound += gas;
         println("topbound " +topBound);

@@ -5,6 +5,9 @@ class ReadyEnemy{
   int size;
   color c;
   
+  int speedX;
+  int speedY;
+  
   //boundaries
   int topBound;
   int bottomBound;
@@ -18,19 +21,32 @@ class ReadyEnemy{
     size = pSize;
     c = pColor;
     
-  topBound = x + 280;
-  bottomBound = x + size + 280;
-  leftBound = y - 280;
-  rightBound = y + size - 280;
+    speedX = 1;
+    speedY = 1;
+    
+  topBound = x;
+  bottomBound = x + size;
+  leftBound = y;
+  rightBound = y + size;
   }
   
   void render(){
     fill(c);
     square(x,y,size);
     
-    //println("topbound " +topBound);
-    //println("bottombound " +bottomBound);
-    //println("rightbound " +rightBound);
-    //println("leftbound " +leftBound);
+    println("enemytopbound " +topBound);
+    println("enemybottombound " +bottomBound);
+    println("enemyrightbound " +rightBound);
+    println("enemyleftbound " +leftBound);
+  }
+  
+  void hunt(){
+    x = x + speedX;
+    y = y + speedY;
+    
+    topBound += speedX;
+    bottomBound += speedX;
+    rightBound += speedY;
+    leftBound += speedY;
   }
 }
